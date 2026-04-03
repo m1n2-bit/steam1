@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -10,9 +11,21 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, sans-serif;
-    background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
     color: white;
     text-align: center;
+    background-attachment: fixed;
+}
+
+/* glow effect */
+body::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 20%, rgba(0,229,255,0.15), transparent 40%),
+                radial-gradient(circle at 80% 30%, rgba(0,255,157,0.12), transparent 40%);
+    pointer-events: none;
 }
 
 /* NAVBAR */
@@ -21,83 +34,13 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 14px 30px;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(15px);
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
     position: sticky;
     top: 0;
-    z-index: 1000;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    box-shadow: 0 0 15px rgba(0,229,255,0.2);
 }
 
-.logo {
-    font-size: 22px;
-    font-weight: bold;
-}
-
-.links {
-    display: flex;
-    gap: 15px;
-}
-
-.links a {
-    text-decoration: none;
-    color: white;
-    padding: 8px 12px;
-    border-radius: 8px;
-    transition: 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.links a:hover {
-    background: rgba(0,229,255,0.15);
-    color: #00e5ff;
-    box-shadow: 0 0 10px #00e5ff;
-}
-
-.menu-btn {
-    display: none;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-/* SIDEBAR */
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: -250px;
-    width: 250px;
-    height: 100%;
-    background: rgba(0,0,0,0.9);
-    backdrop-filter: blur(12px);
-    display: flex;
-    flex-direction: column;
-    padding-top: 60px;
-    transition: 0.3s;
-    z-index: 2000;
-}
-
-.sidebar a {
-    padding: 15px;
-    color: white;
-    text-decoration: none;
-}
-
-.sidebar a:hover {
-    background: rgba(0,229,255,0.2);
-    color: #00e5ff;
-}
-
-h1 {
-    margin: 25px;
-}
-
-/* GRID */
+/* باقي الكود زي ما هو */
 #games {
     display: flex;
     flex-wrap: wrap;
@@ -111,105 +54,42 @@ h1 {
     padding: 12px;
     border-radius: 15px;
     background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.1);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    backdrop-filter: blur(12px);
     transition: 0.3s;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.5s ease forwards;
 }
 
 .card:hover {
-    transform: translateY(-10px) scale(1.03);
-    box-shadow: 0 0 15px rgba(0,229,255,0.4), 0 0 30px rgba(0,229,255,0.2);
+    transform: translateY(-10px);
+    box-shadow: 0 0 15px rgba(0,229,255,0.4);
 }
 
 .card img {
     width: 100%;
     height: 150px;
     object-fit: cover;
-    border-radius: 10px;
 }
 
 button {
-    margin-top: 12px;
+    margin-top: 10px;
     padding: 10px;
     width: 100%;
     border: none;
     border-radius: 8px;
-    background: linear-gradient(45deg, #00bcd4, #00e5ff);
-    font-weight: bold;
+    background: #00e5ff;
     cursor: pointer;
-    transition: 0.3s;
-}
-
-button:hover {
-    box-shadow: 0 0 10px #00e5ff, 0 0 20px #00e5ff;
-}
-
-@keyframes fadeInUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@media (max-width: 768px) {
-    .links {
-        display: none;
-    }
-    .menu-btn {
-        display: block;
-    }
 }
 </style>
+
 </head>
 
 <body>
 
-<div class="navbar">
-    <div class="logo">🎮 GameZone</div>
-
-    <button class="menu-btn" onclick="toggleSidebar()">
-        <i class="fas fa-bars"></i>
-    </button>
-
-    <div class="links">
-        <a href="index.html"><i class="fas fa-home"></i> Home</a>
-        <a href="downloads.html"><i class="fas fa-download"></i> Downloads</a>
-        <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
-    </div>
-</div>
-
-<!-- SIDEBAR -->
-<div id="sidebar" class="sidebar">
-    <a href="index.html"><i class="fas fa-home"></i> Home</a>
-    <a href="downloads.html"><i class="fas fa-download"></i> Downloads</a>
-    <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
-</div>
-
-<h1>Games</h1>
-
+<h1>🔥 GameZone شغال 🔥</h1>
 <div id="games"></div>
 
 <script>
-function toggleSidebar() {
-    const sidebar = document.getElementById("sidebar");
-    sidebar.style.left = sidebar.style.left === "0px" ? "-250px" : "0px";
-}
-
 const games = [
-{ name: "+200 Steam Tools Games", img: "https://via.placeholder.com/300x200?text=Steam+Tools", download: "https://mega.nz/file/bZcHHLoI#VjWUIziv47ddtcGVJ0NUrL5AFp14EsZH2bOaCv79zDQ" },
-{ name: "Blur", img: "https://assets-prd.ignimgs.com/2024/04/10/blur-object-1712712272688.jpg", download: "https://mega.nz/file/jZVV3CSb#KeCO5iuYy9gMf1mmGkaIkz2q63y6DwCmhKWhXyNbEQ4" },
-{ name: "FC 24", img: "https://image.api.playstation.com/vulcan/ap/rnd/202408/0817/4248a0d1a669210e5caf5174eda176c7883be2c9089fa106.png", download: "https://mega.nz/file/mRk32Y5T#mU2eJJzszfBMsGz3uBElA6XLQl4W54XAH0CVihrohNc" },
-{ name: "RDR2", img: "https://upload.wikimedia.org/wikipedia/en/4/44/Red_Dead_Redemption_II.jpg", download: "https://mega.nz/file/SAV1wC6C#L0Oq7fKh_EAZK5Yw3KnsUFYbtvttWK46e0aePu3VUxg" },
-{ name: "Call of Duty: Black Ops III", img: "https://upload.wikimedia.org/wikipedia/en/thumb/b/b1/Black_Ops_3.jpg/250px-Black_Ops_3.jpg", download: "https://mega.nz/file/yccixaCZ#3LR1ZH6j4YxD6xmc7vSospywE6J3GuxfIZ4xQJqFzOg" },
-{ name: "Ghost of Tsushima", img: "https://upload.wikimedia.org/wikipedia/en/b/b6/Ghost_of_Tsushima.jpg", download: "https://mega.nz/file/nNU0Va6Y#Sd-TsXhc5N0jls5HoHLRw0QYiJsjs5sCfzSCLLPiUf0" },
-{ name: "GTA V Legacy", img: "https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png", download: "https://mega.nz/file/eF0SzKaK#H3_r0IKMYHRfvZOWpdRjelad3PxPC7HNqdAcYp2su58" },
-{ name: "EA Sports FC 25", img: "https://image.api.playstation.com/vulcan/ap/rnd/202503/2520/f3c135f8ebdc50b782c6f5f02b27130b499e22847f05aee6.png", download: "https://mega.nz/file/7BtyCBAa#o-TiJtg7S1XhiojW_C-JIfTx6tbXXL_5_xcnvpfxFEg" },
-{ name: "The Witcher 3: Wild Hunt", img: "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/header.jpg", download: "https://mega.nz/file/DZMzwAaK#PRf7rU-WktoE_ug_7o2uVrTBXL-EhHGWMsbI0c4Dpvg" },
-{ name: "GTA V Enhanced", img: "https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png", download: "https://mega.nz/file/nRMzmZpY#gCMzBMmrK71CLhLaeVRd-IsmuMNUfOzrmU9ECoEjNHE" }
+{ name: "GTA V", img: "https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png", download: "#" }
 ];
 
 const container = document.getElementById("games");
@@ -221,7 +101,7 @@ games.forEach(game => {
     div.innerHTML = `
         <img src="${game.img}">
         <h3>${game.name}</h3>
-        <button onclick="window.open('${game.download}','_blank')">Download</button>
+        <button>Download</button>
     `;
 
     container.appendChild(div);
@@ -230,52 +110,3 @@ games.forEach(game => {
 
 </body>
 </html>
-
-/* ==============================
-   🌌 BACKGROUND STYLE (GLASS + GRADIENT)
-   ============================== */
-
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    color: white;
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-    background-attachment: fixed;
-    overflow-x: hidden;
-}
-
-/* animated glow overlay */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 20% 20%, rgba(0,229,255,0.15), transparent 40%),
-                radial-gradient(circle at 80% 30%, rgba(0,255,157,0.12), transparent 40%);
-    pointer-events: none;
-}
-
-/* glass cards */
-.card {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(12px);
-    border-radius: 15px;
-    padding: 15px;
-    transition: 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 0 15px rgba(0,229,255,0.4);
-}
-
-/* navbar glass */
-.navbar {
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(10px);
-    padding: 15px;
-    position: sticky;
-    top: 0;
-}
