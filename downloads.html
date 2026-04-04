@@ -175,6 +175,26 @@ h1 {
     color: #ccc;
 }
 
+.pagination {
+    text-align: center;
+    margin: 20px;
+}
+
+.pagination button {
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #00e5ff;
+    font-weight: bold;
+}
+
+.pagination button:disabled {
+    background: #555;
+    cursor: not-allowed;
+}
+
 @media (max-width: 768px) {
     .links { display: none; }
     .menu-btn { display: block; }
@@ -211,14 +231,23 @@ h1 {
 <div id="games"></div>
 <div id="noResults" class="no-results" style="display:none;">No games found</div>
 
+<div class="pagination">
+    <button onclick="prevPage()">Previous</button>
+    <span id="pageInfo"></span>
+    <button onclick="nextPage()">Next</button>
+</div>
+
 <script>
 function toggleSidebar() {
     const sidebar = document.getElementById("sidebar");
     sidebar.style.left = sidebar.style.left === "0px" ? "-250px" : "0px";
 }
 
-const games = [
-  {
+let currentPage = 1;
+const itemsPerPage = 40;
+let filteredGames = [];
+
+const games = [{
     name: "Hitman Absolution",
     img: "https://e.snmc.io/lk/l/x/4d8b29f257242e208d94bdd14511982d/8743411",
     download: "https://mega.nz/file/vVsnGbbZ#1kaoBuOjGm5nK43VMePd7Y3J8MNdmKrC_WLENEt9CJM"
@@ -558,8 +587,7 @@ const games = [
 
 { name: "The Witcher 3: Wild Hunt", img: "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/header.jpg", download: "https://mega.nz/file/DZMzwAaK#PRf7rU-WktoE_ug_7o2uVrTBXL-EhHGWMsbI0c4Dpvg" },
 
-{ name: "GTA V Enhanced", img: "https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png", download: "https://mega.nz/file/nRMzmZpY#gCMzBMmrK71CLhLaeVRd-IsmuMNUfOzrmU9ECoEjNHE" }
-];
+{ name: "GTA V Enhanced", img: "https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png", download: "https://mega.nz/file/nRMzmZpY#gCMzBMmrK71CLhLaeVRd-IsmuMNUfOzrmU9ECoEjNHE" }];
 
 const container = document.getElementById("games");
 const noResults = document.getElementById("noResults");
@@ -567,34 +595,65 @@ const noResults = document.getElementById("noResults");
 function renderGames(list) {
     container.innerHTML = "";
 
-    if (list.length === 0) {
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+
+    const pageItems = list.slice(start, end);
+
+    if (pageItems.length === 0) {
         noResults.style.display = "block";
         return;
     } else {
         noResults.style.display = "none";
     }
 
-    list.forEach(game => {
+    pageItems.forEach(game => {
         const card = document.createElement("div");
         card.className = "game-card";
 
         card.innerHTML = `
-            <img src="${game.img}">
+            <img src="${game.img}" loading="lazy">
             <h3>${game.name}</h3>
             <a class="download-btn" href="${game.download}" target="_blank">Download</a>
         `;
 
         container.appendChild(card);
     });
+
+    updatePageInfo(list.length);
+}
+
+function updatePageInfo(totalItems) {
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+    document.getElementById("pageInfo").innerText = `Page ${currentPage} / ${totalPages}`;
+}
+
+function nextPage() {
+    const totalPages = Math.ceil(filteredGames.length / itemsPerPage);
+    if (currentPage < totalPages) {
+        currentPage++;
+        renderGames(filteredGames);
+        window.scrollTo(0, 0);
+    }
+}
+
+function prevPage() {
+    if (currentPage > 1) {
+        currentPage--;
+        renderGames(filteredGames);
+        window.scrollTo(0, 0);
+    }
 }
 
 document.getElementById("search").addEventListener("input", function() {
     const value = this.value.toLowerCase();
-    const filtered = games.filter(g => g.name.toLowerCase().includes(value));
-    renderGames(filtered);
+    filteredGames = games.filter(g => g.name.toLowerCase().includes(value));
+    currentPage = 1;
+    renderGames(filteredGames);
 });
 
-renderGames(games);
+filteredGames = games;
+renderGames(filteredGames);
 </script>
 
 </body>
