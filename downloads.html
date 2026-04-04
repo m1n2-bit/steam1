@@ -247,7 +247,98 @@ let currentPage = 1;
 const itemsPerPage = 40;
 let filteredGames = [];
 
-const games = [{
+const games = [
+{ name: "Alien Isolation", img: "https://image.api.playstation.com/cdn/UP0177/CUSA00363_00/q27BoJza6yJmXUqvzN0WndHK8ag3mzeq.png", download: "https://mega.nz/file/jE9HWDjJ#0viOJbf4QGTk327mtx49x4_1ogeJ-prZrI8z8UkCcU8" },
+
+{ name: "American Truck Simulator", img: "https://m.media-amazon.com/images/M/MV5BMWUxMGY4MWQtOWRkNi00NWRhLTkyYWItZGYyMWJlNTc1YmExXkEyXkFqcGc@._V1_.jpg", download: "https://mega.nz/file/acVnhYCD#XgxrlBvBs3IKv6tHrFAry_rNw7ntSjptgvOc9UGxxJs" },
+
+{ name: "Assetto Corsa Competizione", img: "https://store-images.s-microsoft.com/image/apps.44767.14614728364888398.674c4c2d-acfd-4c6f-a4fa-3b64f19a4a54.9e6e0922-dbd0-4f9f-8cea-0c4b4cb52ab9", download: "https://mega.nz/file/zJ1X2TDI#JvA1ni-aT2RFQTBDvMfcqIYhOAivL2-eeYsczcOoYlo" },
+
+{ name: "Baba Is You", img: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/736260/header.jpg?t=1760102539", download: "https://mega.nz/file/OQ0gRQzQ#20tRgyt4GEPNrP2CK3tVGSxUdl6qD9Skg3GoxPXrvr4" },
+
+{ name: "Blair Witch", img: "https://upload.wikimedia.org/wikipedia/en/2/26/Blair_Witch_Project.jpg", download: "https://mega.nz/file/PVViXCTS#fwI2hq2ht5jO11nV4J4TQdrL9XZE1IrqsXYXiwd2gjc" },
+
+{ name: "Cities Skylines II", img: "https://image.api.playstation.com/vulcan/ap/rnd/202305/2409/6ddb1f25a25495acc66d4edb1903146531912de496c16097.jpg", download: "https://mega.nz/file/jQkSiL6S#yJXqLu5lcf3GqohIODVF-rCiVjpT8UU_oHrWdWlpN80" },
+
+{ name: "Cities Skylines", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS848VJDsvV0eUzGAMKMvHqSdUM9nbb3lLqBQ&s", download: "https://mega.nz/file/7QtE3JRS#_ZN6ZZkBJ5UyLpY4nMUs28z3hqRX6fRVG6eluyzXHSg" },
+
+{ name: "Dead Space 3", img: "https://upload.wikimedia.org/wikipedia/en/1/1a/Dead_Space_3_PC_game_cover.jpg", download: "https://mega.nz/file/zc8XlTyK#6kgpTnF5kZY9nY_1kcvLkESNzlMaPZAJ4h0_jvZPbDE" },
+
+{ name: "Dirt Rally 2.0", img: "https://image.api.playstation.com/cdn/EP4001/CUSA12747_00/59UfzHlIjF8VYee5ivYYZdW8vhuHA0Df.png?w=440", download: "https://mega.nz/file/7FNRyQyI#_O-oTwSxJhuM-BAmYR9eBDoh9SVZExBXLl5E4MhqMVY" },
+
+{ name: "Euro Truck Simulator 2", img: "https://image.api.playstation.com/vulcan/ap/rnd/202507/3015/297621f3fc0cf4f5907569f29516527b69cf861c895539fd.jpg", download: "https://mega.nz/file/jd9yBTSK#-eugl7Yt0vSBJMntD6QJK--y2_wsB05MuaqOrnN9bOA" },
+
+{ name: "Factorio", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpPIoOmNMecwCUorfiU57LNXrpQG20hiuDwA&s", download: "https://mega.nz/file/GJtgDTiQ#5K75j7ulVRU59I3dDbp1SvUpqSsirbT2CHJRnWEOPBQ" },
+
+{ name: "Forza Horizon 4", img: "https://upload.wikimedia.org/wikipedia/en/8/87/Forza_Horizon_4_cover.jpg", download: "https://mega.nz/file/bItiQJRa#Nl1UTWIemU__Xo-cLhZtcXf5QYjMK27pbUnynQE2Nt4" },
+
+{ name: "House Flipper 2", img: "https://image.api.playstation.com/vulcan/ap/rnd/202311/1614/bfe378bd3e7b0220998dafd485f1daee1b275a5afeeec15c.png", download: "https://mega.nz/file/6Fs0wKpb#ycKdAGaX2YtLO4abCANUto1iaOMMfHetGDSurU7kh9c" },
+
+{ name: "House Flipper", img: "https://upload.wikimedia.org/wikipedia/en/3/31/House_Flipper.jpg", download: "https://mega.nz/file/rVExDZSK#CqYzURElQEEykptliTalfK5IM8fb2MWcGeLxHmDhKDk" },
+
+{ name: "Inside", img: "https://image.api.playstation.com/vulcan/ap/rnd/202511/2413/63517ca5562198bcbc125a13543f7c75c07784bdd75d5f9b.jpg", download: "https://mega.nz/file/mN0lALxA#GApf87cgO8uszJ5JAbQd0-Sr3lqc_hHi-8-0TKoSce8" },
+
+{ name: "Layers of Fear", img: "https://upload.wikimedia.org/wikipedia/en/4/4d/Layers_of_Fear_Cover.png", download: "https://mega.nz/file/3YkXBYiJ#4p8frfmPP58gHoQoX5VpPxNx1K2IqOJtqzyC5q0R_kM" },
+
+{ name: "Limbo", img: "https://upload.wikimedia.org/wikipedia/en/c/cc/Limbo_Box_Art.jpg", download: "https://mega.nz/file/XUdGWKAT#L73Ejm-vOTfyJmMsuqiANTlvtFqC8ho7avV6-eWWZ_4" },
+
+{ name: "Little Nightmares II", img: "https://image.api.playstation.com/vulcan/ap/rnd/202011/1819/m7gCTrMRQBTPHi87Mi3leVVY.jpg", download: "https://mega.nz/file/qNVFTZxL#Lt0gYi6aIN2pqZOi-7Lu67dI9vhJuts0yKK1bbnvZlc" },
+
+{ name: "Little Nightmares", img: "https://upload.wikimedia.org/wikipedia/en/thumb/d/d8/Little_Nightmares_Box_Art.png/250px-Little_Nightmares_Box_Art.png", download: "https://mega.nz/file/iY0ASDLY#CiGLwup7KOa7GBW9g_CUGqBeQIPWLvYaCkGEtllR0tk" },
+
+{ name: "Need for Speed Unbound", img: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1846380/7db34cfa0adc634dfcb732563450dc4b1da9d1f2/capsule_616x353.jpg?t=1761146151", download: "https://mega.nz/file/fcVzUKTI#o8fIKXgL_s1OFFAIhDMS0mBBSRMsx-_6tUfEm2lQ2zs" },
+
+{ name: "Portal", img: "https://upload.wikimedia.org/wikipedia/en/9/9f/Portal_standalonebox.jpg", download: "https://mega.nz/file/zIcUDa5K#A-wWT8D26yd7F2yq9hVtXDcBu2fzTHyjTO2V2H42gWY" },
+
+{ name: "Prison Architect", img: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/233450/header.jpg?t=1759221867", download: "https://mega.nz/file/TA9iyRKC#oLmeFj-E8Mmrauhnl_MoZtsG8VKDheoNRkzb9OA1fN8" },
+
+{ name: "Project CARS 2", img: "https://upload.wikimedia.org/wikipedia/en/d/d7/Project_CARS_2_cover_art.jpg", download: "https://mega.nz/file/jIVW1aaD#qPObLHRFwqxwLmf46L0FU6-5Rl_VvOLmxJK5dlyvasM" },
+
+{ name: "Resident Evil 2", img: "https://upload.wikimedia.org/wikipedia/en/f/fd/Resident_Evil_2_Remake.jpg", download: "https://mega.nz/file/bJEzlT6T#seRSXg4T3GD-rTXdiRJrg1NXo2MVUFhovEG8FFwVuO4" },
+
+{ name: "Resident Evil 3", img: "https://image.api.playstation.com/vulcan/ap/rnd/202206/0206/WmriZBRlSeXWEEDLJOWW7MdW.png", download: "https://mega.nz/file/iVNywLgR#pA9wq7XPMGvKUeVAbjDMNjLLiNAqlJLYaIqqUvxP-iQ" },
+
+{ name: "RimWorld", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3HEtbqlQbvrcnVAAeZI6WuP6n5HdkutORHg&s", download: "https://mega.nz/file/GEsAHLpJ#S5OW7iyC7ywTUv-PcMB35kq8_kjxKK1lBlzMdigyThw" },
+
+{ name: "Satisfactory", img: "https://cdn1.epicgames.com/offer/crab/EGS_Satisfactory_CoffeeStainStudios_S2_1200x1600-8a389a525cee6928c427b4a99563e282", download: "https://mega.nz/file/nUEFlTrJ#KKQh7ZgoMMq5MtqjiwOC8FY_ayrn_MbfL2g5dFbPbU4" },
+
+{ name: "SOMA", img: "https://image.api.playstation.com/cdn/EP1188/CUSA03200_00/oOaAxfcuEiUVbet2xmVSK1icbzaGKxcU.png", download: "https://mega.nz/file/jM8Q1AIJ#QhgtxWDGkJekGO-kxOSrxnabQf7c3bBNja37k0hCs-8" },
+
+{ name: "Subnautica Below Zero", img: "https://upload.wikimedia.org/wikipedia/en/a/a3/Subnautica_Below_Zero_cover_art.jpg", download: "https://mega.nz/file/CcUwnZ7J#NLHBvqwtnHt0nwbzejiEAc2w9uOfhbjZUE29qRZoyYw" },
+
+{ name: "Superliminal", img: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1049410/capsule_616x353.jpg?t=1755294276", download: "https://mega.nz/file/SYlgDbrA#TBQbSh96p4V5mARg2Bscfdve3Ei6MDiGNRa0hNXIv0I" },
+
+{ name: "The Evil Within 2", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJcrOtW80hcuJH6cb2HvGo1A5VS5n9jb80GQ&s", download: "https://mega.nz/file/fYcWmIrI#1hX8ioQjEWG7Ys0bZaetCmx6ChWWXArGmZ8ojJz8Kg8" },
+
+{ name: "The Evil Within", img: "https://cdn1.epicgames.com/offer/d602fd70876141ba9bf4d54809c423d1/EGS_TheEvilWithin_TangoGameworks_S2_1200x1600-18ffb6d4859f8f05d21833f7b8f4a2c7", download: "https://mega.nz/file/jUVFyDTC#vmdia0Xtc2vIIE63uAFXwn_FEMeqyH14qT88Jt0PXYY" },
+
+{ name: "Visage", img: "https://m.media-amazon.com/images/M/MV5BZTdkZTE0YzAtYTQ1YS00ZDA4LWIwNTgtZTJiYzIwMzQ0MTA4XkEyXkFqcGc@._V1_.jpg", download: "https://mega.nz/file/CFUFiY5Q#iTt5k0Y-YrUOKirLB-GsZbEIetuGQJw4wChBtVJuKng" },
+
+{ name: "WRC 10", img: "https://image.api.playstation.com/vulcan/ap/rnd/202104/1314/zDBjOW5pENiZT3DHWMMZcE2i.jpg", download: "https://mega.nz/file/CcEHgQ5K#HNSHMNnbn6mkZCofKZxaAMXjMzMQsd9cnl41Jc979fU" },
+{ 
+  name: "Amnesia: The Dark Descent", 
+  img: "https://upload.wikimedia.org/wikipedia/en/6/62/Amnesia-The-Dark-Descent-Cover-Art.png", 
+  download: "https://mega.nz/file/rRFnBB5A#hJL8S3BgYtuPjHwz0KmkZv3rtJ2XQ_ENPpUHuBNRIws" 
+},
+
+{ 
+  name: "Outlast 2", 
+  img: "https://image.api.playstation.com/cdn/UP2113/CUSA06623_00/5vXtP0O5fmnnyrNnWAinTz57d04szG3b.png?w=440", 
+  download: "https://mega.nz/file/jFUkxArS#lwTwJ3cWGTwzRzlcPax3A4vm0Yv1JzEBtmzEs0q1XDE" 
+},
+
+{ 
+  name: "Resident Evil 4", 
+  img: "https://image.api.playstation.com/vulcan/ap/rnd/202207/2509/85p2Dwh5iDhUzRKe40QeNYh3.png", 
+  download: "https://mega.nz/file/bUNlBawL#sMt6OUnTckO1SHDqs332Rn7puMwqhaEIiA_ch7SENMU" 
+},
+
+{ 
+  name: "The Crew 2", 
+  img: "https://upload.wikimedia.org/wikipedia/en/2/2b/The_Crew_2_box_art.jpg", 
+  download: "https://mega.nz/file/DUU2TJhb#BJVVhBvSXGvcPA6vRIlj43hc6vkMnRJJJbkjLr6UxI0" 
+},
+{
     name: "Hitman Absolution",
     img: "https://e.snmc.io/lk/l/x/4d8b29f257242e208d94bdd14511982d/8743411",
     download: "https://mega.nz/file/vVsnGbbZ#1kaoBuOjGm5nK43VMePd7Y3J8MNdmKrC_WLENEt9CJM"
