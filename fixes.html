@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameZone - Fixes</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    background-attachment: fixed;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 30px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(15px);
+    position: sticky;
+    top: 0;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.links a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+}
+
+/* TITLE */
+h1 {
+    margin: 25px;
+}
+
+/* CARD */
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
+
+.card {
+    width: 320px;
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+}
+
+.link-box {
+    word-break: break-all;
+    background: rgba(0,0,0,0.4);
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+/* BUTTON */
+button {
+    margin-top: 15px;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(45deg, #00bcd4, #00e5ff);
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    box-shadow: 0 0 12px #00e5ff;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">🎮 GameZone</div>
+
+    <div class="links">
+        <a href="#"><i class="fas fa-home"></i> Home</a>
+        <a href="#"><i class="fas fa-download"></i> Downloads</a>
+        <a href="#"><i class="fas fa-wrench"></i> Fixes</a>
+    </div>
+</div>
+
+<h1>Fixes</h1>
+
+<!-- CARD -->
+<div class="container">
+    <div class="card">
+        <h3><i class="fas fa-user-shield"></i> Accounts Skip</h3>
+        <p>Skip login / account restrictions for supported games</p>
+
+        <!-- LINK AS TEXT -->
+        <div class="link-box" id="linkText">
+https://mega.nz/file/aANADQ4K#bEUOJoeYhVIO_Ni23gv-9XzAFh0MoYpfLTZRe-g7Nhk
+        </div>
+
+        <!-- COPY BUTTON -->
+        <button onclick="copyLink()">
+            <i class="fas fa-copy"></i> Copy
+        </button>
+    </div>
+</div>
+
+<script>
+function copyLink() {
+    const text = document.getElementById("linkText").innerText;
+    navigator.clipboard.writeText(text).then(() => {
+        alert("Link copied!");
+    });
+}
+</script>
+
+</body>
+</html>
