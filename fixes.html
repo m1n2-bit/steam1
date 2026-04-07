@@ -10,27 +10,19 @@
 <style>
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: Arial;
     color: white;
     background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-    background-attachment: fixed;
 }
 
-/* NAVBAR */
 .navbar {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     padding: 14px 30px;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0,0,0,0.5);
     backdrop-filter: blur(15px);
     position: sticky;
     top: 0;
-}
-
-.logo {
-    font-size: 22px;
-    font-weight: bold;
 }
 
 .links a {
@@ -39,16 +31,10 @@ body {
     text-decoration: none;
 }
 
-/* TITLE */
-h1 {
-    margin: 25px;
-}
-
-/* CARD */
 .container {
     display: flex;
     justify-content: center;
-    padding: 30px;
+    padding: 40px;
 }
 
 .card {
@@ -57,66 +43,56 @@ h1 {
     border-radius: 15px;
     background: rgba(255,255,255,0.05);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.1);
     text-align: center;
 }
 
 .link-box {
-    word-break: break-all;
     background: rgba(0,0,0,0.4);
     padding: 12px;
     border-radius: 8px;
     margin-top: 12px;
-    font-size: 14px;
+    word-break: break-all;
+    cursor: pointer;
 }
 
-/* BUTTON */
 button {
     margin-top: 15px;
-    padding: 10px;
     width: 100%;
+    padding: 10px;
     border: none;
     border-radius: 8px;
     background: linear-gradient(45deg, #00bcd4, #00e5ff);
-    font-weight: bold;
     cursor: pointer;
-    transition: 0.2s;
 }
 
-button:hover {
-    box-shadow: 0 0 12px #00e5ff;
+.copied {
+    background: linear-gradient(45deg, #00c853, #64dd17) !important;
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
 <div class="navbar">
-    <div class="logo">🎮 GameZone</div>
+    <div><b>🎮 GameZone</b></div>
 
     <div class="links">
-        <a href="#"><i class="fas fa-home"></i> Home</a>
-        <a href="#"><i class="fas fa-download"></i> Downloads</a>
-        <a href="#"><i class="fas fa-wrench"></i> Fixes</a>
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="downloads.html"><i class="fas fa-download"></i> Downloads</a>
+        <a href="fixes.html"><i class="fas fa-wrench"></i> Fixes</a>
     </div>
 </div>
 
-<h1>Fixes</h1>
-
-<!-- CARD -->
 <div class="container">
     <div class="card">
         <h3><i class="fas fa-user-shield"></i> Accounts Skip</h3>
-        <p>Skip login / account restrictions for supported games</p>
+        <p>Skip login restrictions</p>
 
-        <!-- LINK AS TEXT -->
         <div class="link-box" id="linkText">
 https://mega.nz/file/aANADQ4K#bEUOJoeYhVIO_Ni23gv-9XzAFh0MoYpfLTZRe-g7Nhk
         </div>
 
-        <!-- COPY BUTTON -->
-        <button onclick="copyLink()">
+        <button id="copyBtn" onclick="copyLink()">
             <i class="fas fa-copy"></i> Copy
         </button>
     </div>
@@ -124,9 +100,17 @@ https://mega.nz/file/aANADQ4K#bEUOJoeYhVIO_Ni23gv-9XzAFh0MoYpfLTZRe-g7Nhk
 
 <script>
 function copyLink() {
-    const text = document.getElementById("linkText").innerText;
+    const text = document.getElementById("linkText").innerText.trim();
+    const btn = document.getElementById("copyBtn");
+
     navigator.clipboard.writeText(text).then(() => {
-        alert("Link copied!");
+        btn.innerHTML = "✔ Copied!";
+        btn.classList.add("copied");
+
+        setTimeout(() => {
+            btn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+            btn.classList.remove("copied");
+        }, 2000);
     });
 }
 </script>
